@@ -2,7 +2,7 @@ require('./check-versions')()
 
 var config = require('../config')
 if (!process.env.NODE_ENV) {
-  process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
+	process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
 
 // var opn = require('opn')
@@ -43,11 +43,11 @@ var compiler = webpack(webpackConfig)
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {
-  var options = proxyTable[context]
-  if (typeof options === 'string') {
-    options = { target: options }
-  }
-  app.use(proxyMiddleware(options.filter || context, options))
+	var options = proxyTable[context]
+	if (typeof options === 'string') {
+		options = {target: options}
+	}
+	app.use(proxyMiddleware(options.filter || context, options))
 })
 
 // handle fallback for HTML5 history API
@@ -68,7 +68,7 @@ app.use(staticPath, express.static('./static'))
 
 var _resolve
 var readyPromise = new Promise(resolve => {
-  _resolve = resolve
+	_resolve = resolve
 })
 
 // console.log('> Starting dev server...')
@@ -82,25 +82,25 @@ var readyPromise = new Promise(resolve => {
 // })
 
 module.exports = new Promise((resolve, reject) => {
-  portfinder.basePort = port
-  portfinder.getPortPromise()
-  .then(newPort => {
-      if (port !== newPort) {
-        console.log(`${port}端口被占用，开启新端口${newPort}`)
-      }
-      var server = app.listen(newPort, 'localhost')
-      // for 小程序的文件保存机制
-      require('webpack-dev-middleware-hard-disk')(compiler, {
-        publicPath: webpackConfig.output.publicPath,
-        quiet: true
-      })
-      resolve({
-        ready: readyPromise,
-        close: () => {
-          server.close()
-        }
-      })
-  }).catch(error => {
-    console.log('没有找到空闲端口，请打开任务管理器杀死进程端口再试', error)
-  })
+	portfinder.basePort = port
+	portfinder.getPortPromise()
+		.then(newPort => {
+			if (port !== newPort) {
+				console.log(`${port}端口被占用，开启新端口${newPort}`)
+			}
+			var server = app.listen(newPort, 'localhost')
+			// for 小程序的文件保存机制
+			require('webpack-dev-middleware-hard-disk')(compiler, {
+				publicPath: webpackConfig.output.publicPath,
+				quiet: true
+			})
+			resolve({
+				ready: readyPromise,
+				close: () => {
+					server.close()
+				}
+			})
+		}).catch(error => {
+		console.log('没有找到空闲端口，请打开任务管理器杀死进程端口再试', error)
+	})
 })
