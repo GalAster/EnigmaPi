@@ -1,4 +1,4 @@
-# enigmapi
+# Enigma Pi
 
 > Enigma Pi
 
