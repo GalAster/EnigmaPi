@@ -23,6 +23,9 @@ module.exports = {
 		"linebreak-style": ["error", "windows"],
 		"no-tabs": 0,
 		"comma-dangle": ["error", "never"],
+		// Disable EsLint Error
+		"space-before-function-paren": 1,
+		"semi": 0,
 		// allow paren-less arrow functions
 		'arrow-parens': 0,
 		// allow async-await

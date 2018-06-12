@@ -17,13 +17,13 @@
 			card
 		},
 
-		data() {
+		data () {
 			return {
 				logs: []
 			}
 		},
 
-		created() {
+		created () {
 			const logs = (wx.getStorageSync('logs') || [])
 			this.logs = logs.map(log => formatTime(new Date(log)))
 		}
