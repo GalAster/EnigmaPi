@@ -1,85 +1,122 @@
 <template>
-	<div class="container" @click="clickHandle('test click', $event)">
+	<div class="page">
+		<div class="page__hd">
+			<div class="page__title">Enigma-Pi</div>
+		</div>
+		<div class="page__bd">
+			<!-- 图文组合列表  start -->
+			<div class="weui-panel weui-panel_access">
+				<div class="weui-panel__hd">寻找你的数字!</div>
+				<div class="weui-panel__bd">
+					<navigator url="/pages/pi/main" class="weui-media-box weui-media-box_appmsg"
+							   hover-class="weui-cell_active">
+						<div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+							<image class="weui-media-box__thumb" src="/static/images/Constant Pi.png"></image>
+						</div>
+						<div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+							<div class="weui-media-box__title">圆周率</div>
+							<div class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</div>
+						</div>
+					</navigator>
+					<navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+						<div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+							<image class="weui-media-box__thumb" src="/static/images/Constant E.png"></image>
+						</div>
+						<div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+							<div class="weui-media-box__title">自然底数</div>
+							<div class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</div>
+						</div>
+					</navigator>
+				</div>
+				<navigator url="/pages/more-constant/main" class="weui-panel__ft">
+					<div class="weui-cell weui-cell_access weui-cell_link">
+						<div class="weui-cell__bd">更多常数</div>
+						<div class="weui-cell__ft weui-cell__ft_in-access"></div>
+					</div>
+				</navigator>
+			</div>
 
-		<form class="form-container">
-			<input type="text" class="form-control" v-model="motto" placeholder="v-model"/>
-			<input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy"/>
-		</form>
-		<a href="/pages/logs/main" class="counter">去往log示例页面</a>
+			<!-- 图文组合列表  end -->
+
+			<!-- 文字组合列表  start -->
+			<div class="weui-panel weui-panel_access">
+				<div class="weui-panel__hd">推荐阅读</div>
+				<div class="weui-panel__bd">
+					<navigator  url="" class="weui-media-box weui-media-box_text">
+						<div class="weui-media-box__title weui-media-box__title_in-text">标题一</div>
+						<div class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</div>
+					</navigator>
+					<navigator  url="" class="weui-media-box weui-media-box_text">
+						<div class="weui-media-box__title weui-media-box__title_in-text">标题二</div>
+						<div class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</div>
+						<div class="weui-media-box__info">
+							<div class="weui-media-box__info__meta">文字来源</div>
+							<div class="weui-media-box__info__meta">时间</div>
+							<div class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</div>
+						</div>
+					</navigator>
+				</div>
+				<div class="weui-panel__ft">
+					<div class="weui-cell weui-cell_access weui-cell_link">
+						<div class="weui-cell__bd">查看更多</div>
+						<div class="weui-cell__ft weui-cell__ft_in-access"></div>
+					</div>
+				</div>
+			</div>
+			<!-- 文字组合列表  end -->
+
+			<!-- 小图文组合列表  start -->
+			<div class="weui-panel">
+				<div class="weui-panel__hd">小游戏</div>
+				<div class="weui-panel__bd">
+					<div class="weui-media-box weui-media-box_small-appmsg">
+						<div class="weui-cells weui-cells_in-small-appmsg">
+							<navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+								<div class="weui-cell__hd">
+									<image :src="icon20" style="width: 20px;height: 20px;margin-right: 5px"/>
+								</div>
+								<div class="weui-cell__bd weui-cell_primary">
+									<div>敬请期待</div>
+								</div>
+								<div class="weui-cell__ft weui-cell__ft_in-access"></div>
+							</navigator>
+							<navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+								<div class="weui-cell__hd">
+									<image :src="icon20" style="width: 20px;height: 20px;margin-right: 5px"/>
+								</div>
+								<div class="weui-cell__bd weui-cell_primary">
+									<div>敬请期待</div>
+								</div>
+								<div class="weui-cell__ft weui-cell__ft_in-access"></div>
+							</navigator>
+						</div>
+					</div>
+				</div>
+				<navigator url="" class="weui-panel__ft">
+					<div class="weui-cell weui-cell_access weui-cell_link">
+						<div class="weui-cell__bd">查看更多</div>
+						<div class="weui-cell__ft weui-cell__ft_in-access"></div>
+					</div>
+				</navigator>
+			</div>
+			<!-- 小图文组合列表 end -->
+		</div>
 	</div>
 </template>
 
 <script>
-	import card from '@/components/card'
+	import base64 from '../../../static/images/base64';
 
 	export default {
 		data () {
 			return {
-				motto: 'Hello World',
-				userInfo: {}
+				icon20: base64.icon20,
+				icon60: base64.icon60
 			}
-		},
-
-		components: {
-			card
-		},
-
-		methods: {
-			bindViewTap () {
-				const url = '../logs/main';
-				wx.navigateTo({url})
-			},
-			getUserInfo () {
-				// 调用登录接口
-				wx.login({
-					success: () => {
-						wx.getUserInfo({
-							success: (res) => {
-								this.userInfo = res.userInfo
-							}
-						})
-					}
-				})
-			},
-			clickHandle (msg, ev) {
-				console.log('clickHandle:', msg, ev)
-			}
-		},
-
-		created () {
-			// 调用应用实例的方法获取全局数据
-			this.getUserInfo()
 		}
 	}
 </script>
 
-<style scoped>
-	.userinfo {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.userinfo-avatar {
-		width: 128 rpx;
-		height: 128 rpx;
-		margin: 20 rpx;
-		border-radius: 50%;
-	}
-
-	.userinfo-nickname {
-		color: #aaa;
-	}
-
-	.usermotto {
-		margin-top: 150px;
-	}
-
-	.form-control {
-		display: block;
-		padding: 0 12px;
-		margin-bottom: 5px;
-		border: 1px solid #ccc;
-	}
+<style>
 
 </style>
