@@ -25,6 +25,9 @@ module.exports = {
 		"comma-dangle": ["error", "never"],
 		// Disable EsLint Error
 		"space-before-function-paren": 1,
+		"one-var": 1,
+		"eqeqeq": 1,
+		"no-unused-vars": 1,
 		"semi": 0,
 		// allow paren-less arrow functions
 		'arrow-parens': 0,
@@ -41,4 +44,4 @@ module.exports = {
 		getPage: true,
 		requirePlugin: true
 	}
-}
+};
