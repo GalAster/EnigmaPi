@@ -4,11 +4,10 @@
 (*Global *)
 
 
-$BlockSize = 1*^6;
+$BlockSize = 1*^3;
+$MaxDigits =2*^10;
 $Redundancy = 64;
 $SavePath = FileNameJoin[{$UserBaseDirectory, "ApplicationData", "EnigmaPi"}];
-
-
 
 
 (* ::Section:: *)
@@ -19,9 +18,6 @@ If[!FileExistsQ@#, CreateDirectory[#]]& /@ {
 	$SavePath,
 	FileNameJoin@{$SavePath, "Pi"}
 };
-
-
-
 
 
 (* ::Section:: *)
@@ -58,8 +54,9 @@ CountAll[data_, length_ : 1] := Block[
 ];
 
 
+Options[CountExportTxt]={IntegerLength->11};
 SetAttributes[CountExportTxt, HoldAll];
-CountExportTxt[file_, offset_ : 0, C_ : Pi] := Block[
+CountExportTxt[file_, offset_ : 0, C_ : Pi,OptionsPattern[]] := Block[
 	{name, path, input, data, ans},
 	name = StringJoin[ToString /@ {offset + 1, "-", offset + $BlockSize, ".data.mx"}];
 	path = FileNameJoin[{$SavePath, ToString@C, name}];
@@ -67,7 +64,13 @@ CountExportTxt[file_, offset_ : 0, C_ : Pi] := Block[
 	input = OpenRead[file];
 	SetStreamPosition[input, 2 + offset];
 	data = ToExpression /@ Read[input, ConstantArray[Character, $BlockSize + $Redundancy]];
-	ans = Flatten[CountAll[data, #]& /@ Range[12], 1];
+	ans = Flatten[CountAll[data, #]& /@ Range[OptionValue[IntegerLength]], 1];
+	If[
+	10^OptionValue[IntegerLength]>$MaxDigits,
+	ans=Select[ans,First@#<=$MaxDigits&]
+	];
+	Close[input];
+	ans[[All,2]]+=offset;
 	Export[path, <|
 		"Constant" -> Hold[C],
 		"Type" -> "Count Data",
